@@ -56,7 +56,7 @@ module.exports = class RabbitConnection {
     RemoveUser(userId) {
         var userIndex = this.users.findIndex(u => u.id === userId);
         if (userIndex > -1) {
-            this.users.splice(index, 1);
+            this.users.splice(userIndex, 1);
         }
     }
 
