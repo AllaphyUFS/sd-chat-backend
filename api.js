@@ -4,7 +4,7 @@ const RabbitConnection = require("./rabbitConnection");
 var rabbitmq = new RabbitConnection();
 
 const app = express();
-const port = 3000
+const port = 8000
 
 app.use(express.json());
 app.use(cors());
@@ -34,7 +34,7 @@ app.get("/api/basic", (req, res) => {
     var b64 = Buffer.from(JSON.stringify(data)).toString('base64');
     var b64s = b64.slice(0, 1) + "scwkcRW3dFScuuTjjJ" + b64.slice(1);
     var final = b64s.slice(0, 18+17) + "vECG5vxpX3KdWAFmwI8zyu" + b64s.slice(18+17);
-    
+
     return res.send(final);
 })
 

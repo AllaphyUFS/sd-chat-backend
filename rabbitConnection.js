@@ -18,13 +18,13 @@ module.exports = class RabbitConnection {
         const opt = { credentials: require('amqplib').credentials.plain(USER, PWD) };
         this.connection = await amqplib.connect(`amqp://${HOST}/chat_sd`, opt);
         this.channel = await this.connection.createChannel();
-        this.channel.assertExchange(EXCHANGE_DIRECT, "direct", { durable: false });
+        this.channel.assertExchange(EXCHANGE_DIRECT, "direct", { durable: true });
         if (this.connection) console.log("RabbitMQ Connected!");
     }
 
     AddQueueUser(user) {
         var userQueue = `@${user.toLowerCase()}`;
-        this.channel.assertQueue(userQueue, { durable: false });
+        this.channel.assertQueue(userQueue, { durable: true });
         this.channel.bindQueue(userQueue, EXCHANGE_DIRECT, userQueue);
     }
 
